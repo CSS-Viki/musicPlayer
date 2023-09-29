@@ -9,10 +9,10 @@ const title = document.getElementById("title");
 const cover = document.getElementById("cover");
 
 // Song titles
-const songs = ["song1", "song2", "song3"];
+const songs = ["song1", "song2", "song3", "song4", "song5", "song6"];
 
 //keep track of song
-let songIndex = 2;
+let songIndex = 0;
 
 //initially load song details
 loadSong(songs[songIndex]);
@@ -44,8 +44,10 @@ function prevSong() {
   loadSong(songs[songIndex]);
   playSong();
 }
+
 function nextSong() {
   songIndex++;
+
   if (songIndex > songs.length - 1) {
     songIndex = 0;
   }
@@ -80,3 +82,8 @@ prevBtn.addEventListener("click", prevSong);
 nextBtn.addEventListener("click", nextSong);
 audio.addEventListener("timeupdate", updateProgress);
 progressContainer.addEventListener("click", setProgress);
+
+//Automatically go to the next song
+audio.addEventListener("ended", () => {
+  nextSong();
+});
